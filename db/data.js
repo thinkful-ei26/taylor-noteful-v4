@@ -93,5 +93,7 @@ const tags = [
     'name': 'feral'
   }
 ];
+const users = [
+]; 
 
-module.exports = { folders, notes, tags };
+module.exports = { folders, notes, tags, users };

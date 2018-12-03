@@ -3,15 +3,22 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
+
 
 const { PORT, MONGODB_URI } = require('./config');
+const localStrategy = require('./passport/local');
 
 const notesRouter = require('./routes/notes');
 const foldersRouter = require('./routes/folders');
 const tagsRouter = require('./routes/tags');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
 // Create an Express application
 const app = express();
+//configure passport to utilize the strategy 
+passport.use(localStrategy);
 
 // Log all requests. Skip logging during
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'common', {
@@ -28,6 +35,8 @@ app.use(express.json());
 app.use('/api/notes', notesRouter);
 app.use('/api/folders', foldersRouter);
 app.use('/api/tags', tagsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
