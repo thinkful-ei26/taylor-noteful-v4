@@ -27,6 +27,7 @@ const localStrategy = new LocalStrategy((username, password, done) => {
               location: 'password'
             });
           }
+          // first argument in done is an error. can be null(no error) or an error(err). 
           return done(null, user);
     })
     .catch(err => {

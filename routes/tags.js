@@ -2,12 +2,14 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport'); 
 
 const Tag = require('../models/tag');
 const Note = require('../models/note');
 
 const router = express.Router();
 
+router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
 
