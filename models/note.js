@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
+schema.index({ title: 1, userId: 1 }, { unique: true });
 // Add `createdAt` and `updatedAt` fields
 schema.set('timestamps', true);
 
