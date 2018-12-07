@@ -3,7 +3,6 @@
 
 const api = (function () {
   const search = function (path, query) {
-    console.log(store.authToken); 
     return $.ajax({
       type: 'GET',
       url: path,
@@ -13,7 +12,6 @@ const api = (function () {
     });
   };
   const details = function (path) {
-    console.log(store.authToken);
     return $.ajax({
       type: 'GET',
       dataType: 'json',
